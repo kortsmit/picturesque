@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "scripts": {
+    "prod": "gulp --production",
+    "dev": "gulp watch"
+  },
+  "devDependencies": {
+    "bootstrap-sass": "^3.0.0",
+    "gulp": "^3.9.1",
+    "laravel-elixir": "^5.0.0",
+    "laravel-elixir-vueify": "^1.0.0",
+    "vue-router": "^0.7.13",
+    "vue-resource": "^0.9.3"
+  },
+  "dependencies": {
+    "material-design-icons": "^2.2.3"
+  }
+}

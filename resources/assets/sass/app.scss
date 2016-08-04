@@ -1,0 +1,16 @@
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+  padding-top: 80px
+}
+
+.list-group-item {
+  &.v-link-active,
+  &.v-link-active:hover,
+  &.v-link-active:focus {
+    z-index: 2;
+    color: $list-group-active-color;
+    background-color: $list-group-active-bg;
+    border-color: $list-group-active-border;
+  }
+}
