@@ -1,6 +1,7 @@
 Building a blog using Laravel and VueJS in order to learn VueJS. Since I'm using this as a learning process, if you take a look and use anything, all I ask is that you [let me know what you think!](mailto:tim@kortsmit.com)
 
 To install:
+
 1. Clone
 2. Configure for homestead and `vagrant reload --provision`
 3. Add host file entry. I suggest using `picturesque.local` if you'd like to use BrowserSync
