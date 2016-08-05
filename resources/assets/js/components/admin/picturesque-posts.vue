@@ -23,14 +23,14 @@
                             <td>{{ post.id }}</td>
                             <td>{{ post.title }}</td>
                             <td>
-                                <a class="btn btn-sm btn-success">Publish</a>
+                                <a class="btn btn-success" role="button">Publish</a>
                             </td>
                             <td>
                                 <a v-link="{ name: 'admin.post.edit', params: { id: post.id }}"
-                                   class="btn btn-sm btn-default">Edit</a>
+                                   class="btn btn-secondary">Edit</a>
                             </td>
                             <td>
-                                <a class="btn btn-sm btn-danger">Delete</a>
+                                <a class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     </tbody>
@@ -79,8 +79,7 @@
                 let self = this
                 self.$http.get('api/posts')
                     .then(function (response) {
-                        console.log(response);
-                        self.posts = JSON.parse(response.data)
+                        self.posts = JSON.parse(response.data).data
                     })
             },
 

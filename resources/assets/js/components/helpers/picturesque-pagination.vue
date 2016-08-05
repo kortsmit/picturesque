@@ -10,28 +10,48 @@
                 <ul class="pagination pull-right m0">
                     <li :class="{ 'disabled' : pagination.current_page == 1 }">
                         <a href="#" aria-label="First"
-                           disabled="disabled"
+                           v-if="pagination.current_page !== 1"
                            @click.prevent="changePage(1)">
+                            <i class="fa fa-angle-double-left"></i>
+                        </a>
+                        <a aria-label="First"
+                           v-if="pagination.current_page == 1">
                             <i class="fa fa-angle-double-left"></i>
                         </a>
                     </li>
                     <li :class="{ 'disabled' : pagination.current_page == 1 }">
                         <a href="#" aria-label="Previous"
-
+                           v-if="pagination.current_page !== 1"
                            @click.prevent="changePage(pagination.current_page - 1)">
                             <i class="fa fa-angle-left mr5"></i> Previous
                         </a>
+                        <a aria-label="Previous"
+                           v-if="pagination.current_page == 1">
+                            <i class="fa fa-angle-left mr5"></i> Previous
+                        </a>
                     </li>
-                    <li v-for="num in array" :class="{active: num == pagination.current_page}">
-                        <a href="#" @click.prevent="changePage(num)">{{ num }}</a>
+                    <li v-for="page in pages" :class="{active: page == pagination.current_page}">
+                        <a href="#" @click.prevent="changePage(page)">{{ page }}</a>
                     </li>
                     <li :class="{ 'disabled' : pagination.current_page == pagination.last_page }">
-                        <a href="#" aria-label="Next" @click.prevent="changePage(pagination.current_page + 1)">
+                        <a href="#" aria-label="Next"
+                           v-if="pagination.current_page !== pagination.last_page"
+                           @click.prevent="changePage(pagination.current_page + 1)">
+                            Next <i class="fa fa-angle-right ml5"></i>
+                        </a>
+                        <a aria-label="Next"
+                           v-if="pagination.current_page == pagination.last_page">
                             Next <i class="fa fa-angle-right ml5"></i>
                         </a>
                     </li>
                     <li :class="{ 'disabled' : pagination.current_page == pagination.last_page }">
-                        <a href="#" aria-label="Last" @click.prevent="changePage(pagination.last_page)">
+                        <a href="#" aria-label="Last"
+                           v-if="pagination.current_page !== pagination.last_page"
+                           @click.prevent="changePage(pagination.last_page)">
+                            <i class="fa fa-angle-double-right"></i>
+                        </a>
+                        <a aria-label="Last"
+                           v-if="pagination.current_page == pagination.last_page">
                             <i class="fa fa-angle-double-right"></i>
                         </a>
                     </li>
@@ -61,7 +81,7 @@
         },
 
         computed: {
-            array: function () {
+            pages: function () {
                 if(! this.pagination.to) {
                     return []
                 }
@@ -76,13 +96,13 @@
                     to = this.pagination.last_page
                 }
 
-                var arr = []
-                while (from <=to) {
-                    arr.push(from)
+                var pages = []
+                while (from <= to) {
+                    pages.push(from)
                     from++
                 }
 
-                return arr
+                return pages
             }
         },
 
@@ -95,12 +115,7 @@
         methods: {
             changePage: function (page) {
                 this.$set('pagination.current_page', page)
-                this.disableButtons()
                 this.callback()
-            },
-
-            disableButtons: function () {
-
             }
         },
     }

@@ -1,7 +1,7 @@
-@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 
-body {
-  padding-top: 80px
+.container {
+  padding-top: 20px
 }
 
 .list-group-item {

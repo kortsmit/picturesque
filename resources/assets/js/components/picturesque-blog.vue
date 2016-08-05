@@ -47,7 +47,7 @@
                 let self = this
                 self.$http.get('api/posts')
                     .then(function (response) {
-                        self.posts = JSON.parse(response.data)
+                        self.posts = JSON.parse(response.data).data
                     })
             },
 

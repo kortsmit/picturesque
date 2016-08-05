@@ -1,11 +1,11 @@
 <template>
-    <div>
-        <picturesque-navigation></picturesque-navigation>
-    </div>
-    <div id="app">
-        <section class="content">
-            <router-view></router-view>
-        </section>
+    <picturesque-navigation></picturesque-navigation>
+    <div class="container">
+        <div id="app">
+            <section class="content">
+                <router-view></router-view>
+            </section>
+        </div>
     </div>
 </template>
 

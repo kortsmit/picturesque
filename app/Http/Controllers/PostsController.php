@@ -41,7 +41,7 @@ class PostsController extends Controller
             'title',
             'description')
             ->orderBy('updated_at')
-            ->get();
+            ->paginate(10);
     }
 
     /**
