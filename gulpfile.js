@@ -19,6 +19,6 @@ elixir(function(mix) {
     mix.browserify('app.js')
     mix.version(['public/js/app.js', 'public/css/app.css']);
     mix.browserSync({
-        proxy: 'blog.local'
+        proxy: 'picturesque.local'
     });
 });
