@@ -22,7 +22,7 @@ $factory->define(Picturesque\User::class, function (Faker\Generator $faker) {
 
 $factory->define(Picturesque\Category::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->text(),
+        'name' => $faker->sentence(4),
         'slug' => $faker->slug($faker->numberBetween(1, 2)),
         'color' => $faker->hexColor,
     ];
@@ -32,7 +32,7 @@ $factory->define(Picturesque\Post::class, function (Faker\Generator $faker) {
     return [
         'user_id' => 1,
         'category_id' => 1,
-        'title' => $faker->text(),
+        'title' => $faker->sentence(10, true),
         'slug' => $faker->slug,
         'description' => $faker->realText($faker->numberBetween(100, 200)),
         'text' => $faker->realText($faker->numberBetween(250, 500)),

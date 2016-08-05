@@ -11,6 +11,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Blog\User::class, 30)->create();
+        factory(Picturesque\User::class, 30)->create();
     }
 }
