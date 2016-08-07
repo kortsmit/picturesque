@@ -3,7 +3,7 @@
         <a class="navbar-brand" href="https://www.github.com/kortsmit">Kortsmit</a>
         <ul class="nav navbar-nav pull-xs-right">
             <li class="nav-item" :class="{ 'active' : v-link-active }">
-                <a class="nav-link" v-link="{ path: '/' }">Home</a>
+                <a class="nav-link" v-link="{ path: '/', exact: true }">Home</a>
             </li>
             <li class="nav-item" :class="{ 'active' : v-link-active }">
                 <a class="nav-link" v-link="{ path: '/blog' }" :class="{ 'active' : v-link-active }">Blog</a>

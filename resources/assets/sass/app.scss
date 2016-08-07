@@ -14,3 +14,11 @@
     border-color: $list-group-active-border;
   }
 }
+
+.navbar-nav .nav-item a {
+  &.v-link-active,
+  &.v-link-active:hover,
+  &.v-link-active:focus {
+    color: rgba(0,0,0,.8);
+  }
+}
