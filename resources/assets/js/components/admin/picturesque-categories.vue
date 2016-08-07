@@ -22,10 +22,10 @@
                             <td>{{ category.id }}</td>
                             <td>{{ category.name }}</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-default">Edit</button>
+                                <a href="#" class="btn btn-secondary">Edit</a>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                                <a href="#" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     </tbody>

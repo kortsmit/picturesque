@@ -1,22 +1,16 @@
 <template>
-    <div class="row">
-        <div v-for="post in posts" track-by="id" class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    {{ post.id }} - {{ post.title }}
-                </div>
-                <div class="panel-body">
-                    {{ post.description }}
-                </div>
-                <div class="panel-footer">
-                    <div class="btn-group btn-group-xs">
-                        <a class="btn btn-default">Like</a>
-                        <a v-link="{ name: 'post.show', params: { slug: post.slug }}"
-                           class="btn btn-default">
-                            View
-                        </a>
-                    </div>
-                </div>
+    <div class="card-columns">
+        <div class="card" v-for="post in posts">
+            <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+            <div class="card-block">
+                <h4 class="card-title">{{ post.id }} - {{ post.title }}</h4>
+                <p class="card-text">{{ post.description }}</p>
+                <a href="#"
+                   class="btn btn-sm btn-secondary">Like</a>
+                <a v-link="{ name: 'post.show', params: { slug: post.slug }}"
+                   class="btn btn-sm btn-secondary">
+                    View
+                </a>
             </div>
         </div>
     </div>

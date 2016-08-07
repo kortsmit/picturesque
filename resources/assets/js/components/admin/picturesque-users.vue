@@ -24,10 +24,10 @@
                         <td>{{ user.name }}</td>
                         <td>{{ user.email }}</td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-default">Edit</button>
+                            <a hjref="#" class="btn btn-secondary">Edit</a>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                            <a href="#" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                     </tbody>

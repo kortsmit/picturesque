@@ -23,14 +23,17 @@
                             <td>{{ post.id }}</td>
                             <td>{{ post.title }}</td>
                             <td>
-                                <a class="btn btn-success" role="button">Publish</a>
+                                <a href="#"
+                                   class="btn btn-success">Publish</a>
                             </td>
                             <td>
-                                <a v-link="{ name: 'admin.post.edit', params: { id: post.id }}"
+                                <a href="#"
+                                   v-link="{ name: 'admin.post.edit', params: { id: post.id }}"
                                    class="btn btn-secondary">Edit</a>
                             </td>
                             <td>
-                                <a class="btn btn-danger">Delete</a>
+                                <a href="#"
+                                   class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                     </tbody>
