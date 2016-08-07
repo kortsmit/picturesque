@@ -10,10 +10,10 @@
 </template>
 
 <script>
-    import PicturesqueMenu from './picturesque-menu.vue'
+    import PicturesqueMenu from './../template/picturesque-admin-menu.vue'
 
     export default {
-        name: 'photos',
+        name: 'picturesque-photos',
 
         components: {
             PicturesqueMenu

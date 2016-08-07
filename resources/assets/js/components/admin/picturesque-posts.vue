@@ -46,7 +46,7 @@
 </template>
 
 <script>
-    import PicturesqueMenu from './picturesque-menu.vue'
+    import PicturesqueMenu from './../template/picturesque-admin-menu.vue'
 
     export default {
         name: 'picturesque-posts',

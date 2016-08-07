@@ -37,9 +37,7 @@ router.map({
     },
     '/admin/posts/:id/edit': {
         name: 'admin.post.edit',
-        component: {
-            template: 'Post ID is {{ $route.params.id }}'
-        }
+        component: require('./components/admin/picturesque-posts-form.vue')
     },
     '/admin/categories': {
         component: require('./components/admin/picturesque-categories.vue')

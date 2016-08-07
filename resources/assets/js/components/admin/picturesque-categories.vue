@@ -18,7 +18,7 @@
                     </thead>
 
                     <tbody>
-                        <tr v-for="category in categories" :class="{ 'removed' : post.removed }">
+                        <tr v-for="category in categories" :class="{ 'removed' : category.removed }">
                             <td>{{ category.id }}</td>
                             <td>{{ category.name }}</td>
                             <td>
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-    import PicturesqueMenu from './picturesque-menu.vue'
+    import PicturesqueMenu from './../template/picturesque-admin-menu.vue'
 
     export default {
         name: 'picturesque-categories',

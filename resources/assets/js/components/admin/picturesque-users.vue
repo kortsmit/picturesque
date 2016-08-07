@@ -19,17 +19,17 @@
                     </thead>
 
                     <tbody>
-                    <tr v-for="user in users" :class="{ 'removed' : post.removed }">
-                        <td>{{ user.id }}</td>
-                        <td>{{ user.name }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>
-                            <a hjref="#" class="btn btn-secondary">Edit</a>
-                        </td>
-                        <td>
-                            <a href="#" class="btn btn-danger">Delete</a>
-                        </td>
-                    </tr>
+                        <tr v-for="user in users" :class="{ 'removed' : user.removed }">
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                                <a href="#" class="btn btn-secondary">Edit</a>
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
                     </tbody>
 
                 </table>
@@ -40,10 +40,10 @@
 </template>
 
 <script>
-    import PicturesqueMenu from './picturesque-menu.vue'
+    import PicturesqueMenu from './../template/picturesque-admin-menu.vue'
 
     export default {
-        name: 'users',
+        name: 'picturesque-users',
 
         components: {
             PicturesqueMenu

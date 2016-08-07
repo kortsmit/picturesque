@@ -1,7 +1,7 @@
 <template>
     <div class="card-columns">
         <div class="card" v-for="post in posts">
-            <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+            <!--<img class="card-img-top" src="...">-->
             <div class="card-block">
                 <h4 class="card-title">{{ post.id }} - {{ post.title }}</h4>
                 <p class="card-text">{{ post.description }}</p>
