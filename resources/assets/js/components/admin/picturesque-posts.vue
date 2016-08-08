@@ -39,6 +39,9 @@
                     </tbody>
 
                 </table>
+
+                <picturesque-pagination :pagination="pagination" :callback="fetchPosts"></picturesque-pagination>
+
             </div>
 
         </div>
@@ -47,12 +50,14 @@
 
 <script>
     import PicturesqueMenu from './../template/picturesque-admin-menu.vue'
+    import PicturesquePagination from './../helpers/picturesque-pagination.vue'
 
     export default {
         name: 'picturesque-posts',
 
         components: {
-            PicturesqueMenu
+            PicturesqueMenu,
+            PicturesquePagination
         },
 
         props: {
@@ -80,10 +85,24 @@
 
             fetchPosts () {
                 let self = this
-                self.$http.get('api/posts')
+                self.loading = true
+                self.$http.get('api/posts?page='+ self.pagination.current_page)
                     .then(function (response) {
                         self.posts = JSON.parse(response.data).data
+                        self.makePagination(JSON.parse(response.data))
                     })
+            },
+
+            makePagination (data) {
+                let pagination = {
+                    total: data.total,
+                    per_page: data.per_page,
+                    from: data.from,
+                    to: data.to,
+                    current_page: data.current_page,
+                    last_page: data.last_page
+                }
+                this.$set('pagination', pagination)
             },
 
         }

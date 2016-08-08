@@ -35,7 +35,11 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return $this->category->get();
+        return $this->category->select(
+            'id',
+            'name')
+            ->orderBy('updated_at')
+            ->paginate(10);
     }
 
     /**

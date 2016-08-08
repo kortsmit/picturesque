@@ -49,7 +49,14 @@
 
         data() {
             return {
-                categories: []
+                categories: [],
+                pagination: {
+                    total: 0,
+                    per_page: 10,
+                    from: 1,
+                    to: 0,
+                    current_page: 1
+                },
             }
         },
 
@@ -63,7 +70,7 @@
                 let self = this
                 self.$http.get('api/categories')
                     .then(function (response) {
-                        self.categories = JSON.parse(response.data)
+                        self.categories = JSON.parse(response.data).data
                     })
             },
 
