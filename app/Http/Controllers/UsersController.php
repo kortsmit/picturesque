@@ -35,7 +35,12 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return $this->user->get();
+        return $this->user->select(
+            'id',
+            'name',
+            'email')
+            ->orderBy('updated_at')
+            ->paginate(10);
     }
 
     /**

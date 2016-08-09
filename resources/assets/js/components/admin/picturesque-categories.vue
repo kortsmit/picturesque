@@ -31,6 +31,9 @@
                     </tbody>
 
                 </table>
+
+                <picturesque-pagination :pagination="pagination" :callback="fetchCategories"></picturesque-pagination>
+
             </div>
 
         </div>
@@ -39,12 +42,18 @@
 
 <script>
     import PicturesqueMenu from './../template/picturesque-admin-menu.vue'
+    import PicturesquePagination from './../helpers/picturesque-pagination.vue'
 
     export default {
         name: 'picturesque-categories',
 
         components: {
-            PicturesqueMenu
+            PicturesqueMenu,
+            PicturesquePagination
+        },
+
+        props: {
+            loading: true,
         },
 
         data() {
@@ -68,10 +77,24 @@
 
             fetchCategories () {
                 let self = this
-                self.$http.get('api/categories')
-                    .then(function (response) {
-                        self.categories = JSON.parse(response.data).data
-                    })
+                self.loading = true
+                self.$http.get('api/categories?page='+ self.pagination.current_page)
+                        .then(function (response) {
+                            self.categories = JSON.parse(response.data).data
+                            self.makePagination(JSON.parse(response.data))
+                        })
+            },
+
+            makePagination (data) {
+                let pagination = {
+                    total: data.total,
+                    per_page: data.per_page,
+                    from: data.from,
+                    to: data.to,
+                    current_page: data.current_page,
+                    last_page: data.last_page
+                }
+                this.$set('pagination', pagination)
             },
 
         }

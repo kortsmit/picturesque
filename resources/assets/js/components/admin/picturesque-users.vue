@@ -33,6 +33,9 @@
                     </tbody>
 
                 </table>
+
+                <picturesque-pagination :pagination="pagination" :callback="fetchUsers"></picturesque-pagination>
+
             </div>
 
         </div>
@@ -41,17 +44,30 @@
 
 <script>
     import PicturesqueMenu from './../template/picturesque-admin-menu.vue'
+    import PicturesquePagination from './../helpers/picturesque-pagination.vue'
 
     export default {
         name: 'picturesque-users',
 
         components: {
-            PicturesqueMenu
+            PicturesqueMenu,
+            PicturesquePagination
+        },
+
+        props: {
+            loading: true,
         },
 
         data() {
             return {
-                users: []
+                users: [],
+                pagination: {
+                    total: 0,
+                    per_page: 10,
+                    from: 1,
+                    to: 0,
+                    current_page: 1
+                },
             }
         },
 
@@ -63,10 +79,24 @@
 
             fetchUsers () {
                 let self = this
-                self.$http.get('api/users')
-                    .then(function (response) {
-                        self.users = JSON.parse(response.data)
-                    })
+                self.loading = true
+                self.$http.get('api/users?page='+ self.pagination.current_page)
+                        .then(function (response) {
+                            self.users = JSON.parse(response.data).data
+                            self.makePagination(JSON.parse(response.data))
+                        })
+            },
+
+            makePagination (data) {
+                let pagination = {
+                    total: data.total,
+                    per_page: data.per_page,
+                    from: data.from,
+                    to: data.to,
+                    current_page: data.current_page,
+                    last_page: data.last_page
+                }
+                this.$set('pagination', pagination)
             },
 
         }
