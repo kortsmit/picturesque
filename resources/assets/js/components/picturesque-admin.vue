@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import PicturesqueMenu from './../components/admin/picturesque-menu.vue'
+    import PicturesqueMenu from './template/picturesque-admin-menu.vue'
 
     export default {
         name: 'admin',
