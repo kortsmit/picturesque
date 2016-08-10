@@ -13,7 +13,11 @@
                             <th width="1%">#</th>
                             <th>Title</th>
                             <th width="1%"></th>
-                            <th width="1%"></th>
+                            <th width="1%">
+                                <a href="#"
+                                   v-link="{ name: 'admin.categories.create' }"
+                                   class="btn btn-success">Create</a>
+                            </th>
                         </tr>
                     </thead>
 
@@ -22,7 +26,9 @@
                             <td>{{ category.id }}</td>
                             <td>{{ category.name }}</td>
                             <td>
-                                <a href="#" class="btn btn-secondary">Edit</a>
+                                <a href="#"
+                                   v-link="{ name: 'admin.categories.edit', params: { id: category.id }}"
+                                   class="btn btn-secondary">Edit</a>
                             </td>
                             <td>
                                 <a href="#" class="btn btn-danger">Delete</a>

@@ -1,13 +1,13 @@
 <template>
     <section class="content">
-        <h1>Photos</h1>
+        <h1>Categories</h1>
 
         <div class="row">
-            <picturesque-menu :current="posts"></picturesque-menu>
+            <picturesque-menu :current="categories"></picturesque-menu>
 
             <div class="col-md-10">
 
-                Photo ID is {{ $route.params.id }}
+                Category ID is {{ $route.params.id }}
 
             </div>
 
@@ -19,7 +19,7 @@
     import PicturesqueMenu from './../template/picturesque-admin-menu.vue'
 
     export default {
-        name: 'picturesque-photos-form',
+        name: 'picturesque-categories-form',
 
         components: {
             PicturesqueMenu
@@ -31,7 +31,7 @@
 
         data() {
             return {
-                photos: [],
+                categories: [],
                 pagination: {
                     total: 0,
                     per_page: 10,
@@ -43,16 +43,16 @@
         },
 
         ready () {
-            this.fetchPhoto()
+            this.fetchCategory()
         },
 
         methods: {
 
-            fetchPhoto () {
+            fetchCategory () {
                 let self = this
-                self.$http.get('api/photos')
+                self.$http.get('api/categories')
                     .then(function (response) {
-                        self.photos = JSON.parse(response.data).data
+                        self.categories = JSON.parse(response.data).data
                     })
             },
 

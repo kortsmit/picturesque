@@ -13,8 +13,12 @@
                             <th width="1%">#</th>
                             <th>Title</th>
                             <th></th>
-                            <th></th>
-                            <th></th>
+                            <th width="1%"></th>
+                            <th width="1%">
+                                <a href="#"
+                                   v-link="{ name: 'admin.posts.create' }"
+                                   class="btn btn-success">Create</a>
+                            </th>
                         </tr>
                     </thead>
 
@@ -24,7 +28,7 @@
                             <td>{{ post.title }}</td>
                             <td>
                                 <a href="#"
-                                   class="btn btn-success">Publish</a>
+                                   class="btn btn-secondary">Publish</a>
                             </td>
                             <td>
                                 <a href="#"

@@ -14,7 +14,11 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th width="1%"></th>
-                            <th width="1%"></th>
+                            <th width="1%">
+                                <a href="#"
+                                   v-link="{ name: 'admin.users.create' }"
+                                   class="btn btn-success">Create</a>
+                            </th>
                         </tr>
                     </thead>
 
@@ -24,7 +28,9 @@
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
                             <td>
-                                <a href="#" class="btn btn-secondary">Edit</a>
+                                <a href="#"
+                                   v-link="{ name: 'admin.users.edit', params: { id: user.id }}"
+                                   class="btn btn-secondary">Edit</a>
                             </td>
                             <td>
                                 <a href="#" class="btn btn-danger">Delete</a>

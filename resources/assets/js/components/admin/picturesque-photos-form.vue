@@ -43,12 +43,12 @@
         },
 
         ready () {
-            this.fetchPhoto()
+            this.fetchPhotos()
         },
 
         methods: {
 
-            fetchPhoto () {
+            fetchPhotos () {
                 let self = this
                 self.$http.get('api/photos')
                     .then(function (response) {

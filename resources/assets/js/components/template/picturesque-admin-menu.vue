@@ -27,7 +27,7 @@
 
 <script>
     export default{
-        name: 'picturesque-menu',
+        name: 'picturesque-admin-menu',
 
         data() {
             return {

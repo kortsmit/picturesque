@@ -7,7 +7,7 @@
 
             <div class="col-md-10">
 
-
+                User ID is {{ $route.params.id }}
 
             </div>
 
