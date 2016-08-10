@@ -39,6 +39,7 @@ class PostsController extends Controller
         return $this->post->select(
             'id',
             'title',
+            'slug',
             'description')
             ->orderBy('updated_at')
             ->paginate(10);
