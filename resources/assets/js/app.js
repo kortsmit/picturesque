@@ -17,7 +17,7 @@ router.map({
     '/blog': {
         component: require('./components/picturesque-blog.vue')
     },
-    '/blog/posts/:slug': {
+    '/blog/:slug': {
         name: 'post.show',
         component: {
             template: 'Post slug is {{ $route.params.slug }}'
