@@ -26,13 +26,14 @@
                             <td>{{ post.id }}</td>
                             <td>{{ post.title }}</td>
                             <td>
-                                <a href="#"
-                                   v-link="{ name: 'admin.post.edit', params: { id: post.id }}"
-                                   class="btn btn-secondary">Edit</a>
+                                <button type="button"
+                                        v-link="{ name: 'admin.post.edit', params: { id: post.id }}"
+                                        class="btn btn-secondary">Edit</button>
                             </td>
                             <td>
-                                <a href="#"
-                                   class="btn btn-danger">Delete</a>
+                                <button type="button"
+                                        @click="deletePost(post)"
+                                        class="btn btn-danger">Delete</button>
                             </td>
                         </tr>
                     </tbody>
@@ -103,6 +104,15 @@
                 }
                 this.$set('pagination', pagination)
             },
+
+            deletePost (post) {
+                let self = this
+                self.posts.$remove(post)
+                self.$http.delete('/api/posts/' + post.id)
+                    .then(function (response) {
+                        console.log(response)
+                    })
+            }
 
         }
 
