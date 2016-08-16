@@ -30,8 +30,12 @@
                         <textarea class="form-control" id="text" placeholder="Post" rows="10" v-model="post.text"></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-secondary">Back</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="button"
+                                v-link="{ path: '/admin/posts' }"
+                                class="btn btn-secondary">Back</button>
+                        <button type="button"
+                                @click="savePost"
+                                class="btn btn-primary">Save</button>
                         <button type="button" class="btn btn-success">Publish</button>
                     </div>
                 </form>
@@ -93,7 +97,11 @@
             },
 
             savePost () {
-
+                let self = this
+                self.$http.patch('api/posts/' + this.postId, self.post)
+                    .then(function (response) {
+                        console.log('success', response)
+                    })
             }
 
 //            fetchCategories () {
