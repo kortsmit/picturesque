@@ -13,31 +13,71 @@
                 -->
 
                 <form @submit.prevent="savePost">
-                    <div class="form-group">
+
+                    <div class="form-group" :class="{ 'has-danger' : formErrors['title'] }">
                         <label for="title">Title</label>
-                        <input type="text" class="form-control" id="title" placeholder="Title" v-model="post.title">
+                        <input type="text" class="form-control" id="title" placeholder="Title"
+                               :class="{ 'form-control-danger' : formErrors['title'] }"
+                               v-model="post.title">
+                        <small v-if="formErrors['title']" class="form-text text-danger">
+                            {{ formErrors['title'] }}
+                        </small>
+                        <small v-else class="form-text text-muted">
+                            The title of the post.
+                        </small>
                     </div>
-                    <div class="form-group">
+
+                    <div class="form-group" :class="{ 'has-danger' : formErrors['slug'] }">
                         <label for="slug">Slug</label>
-                        <input type="text" class="form-control" id="slug" placeholder="Slug" v-model="post.slug">
+                        <input type="text" class="form-control" id="slug" placeholder="Slug"
+                               :class="{ 'form-control-danger' : formErrors['slug'] }"
+                               v-model="post.slug">
+                        <small v-if="formErrors['slug']" class="form-text text-danger">
+                            {{ formErrors['slug'] }}
+                        </small>
+                        <small v-else class="form-text text-muted">
+                            The slug is used for the URL address linking to the post.
+                        </small>
                     </div>
-                    <div class="form-group">
+
+                    <div class="form-group" :class="{ 'has-danger' : formErrors['description'] }">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="description" placeholder="description" v-model="post.description"></textarea>
+                        <textarea class="form-control" id="description" placeholder="description"
+                                  :class="{ 'form-control-danger' : formErrors['description'] }"
+                                  v-model="post.description"></textarea>
+                        <small v-if="formErrors['description']" class="form-text text-danger">
+                            {{ formErrors['description'] }}
+                        </small>
+                        <small v-else class="form-text text-muted">
+                            A short description that shows up on the blog listing.
+                        </small>
                     </div>
-                    <div class="form-group">
+
+                    <div class="form-group" :class="{ 'has-danger' : formErrors['text'] }">
                         <label for="text">Post</label>
-                        <textarea class="form-control" id="text" placeholder="Post" rows="10" v-model="post.text"></textarea>
+                        <textarea class="form-control" id="text" placeholder="Post" rows="10"
+                                  :class="{ 'form-control-danger' : formErrors['text'] }"
+                                  v-model="post.text"></textarea>
+                        <small v-if="formErrors['text']" class="form-text text-danger">
+                            {{ formErrors['text'] }}
+                        </small>
+                        <small v-else class="form-text text-muted">
+                            The actual blog post. It'll support markdown soon enough! But... not yet.
+                        </small>
                     </div>
+
                     <div class="form-group">
                         <button type="button"
                                 v-link="{ path: '/admin/posts' }"
                                 class="btn btn-secondary">Back</button>
                         <button type="button"
                                 @click="savePost"
+                                :disabled="formSaving"
                                 class="btn btn-primary">Save</button>
-                        <button type="button" class="btn btn-success">Publish</button>
+                        <button type="button"
+                                class="btn btn-success">Publish</button>
                     </div>
+
                 </form>
 
             </div>
@@ -77,6 +117,8 @@
                     to: 0,
                     current_page: 1
                 },
+                formErrors: {},
+                formSaving: false
             }
         },
 
@@ -98,10 +140,17 @@
 
             savePost () {
                 let self = this
+                self.formSaving = true
                 self.$http.patch('api/posts/' + this.postId, self.post)
                     .then(function (response) {
                         console.log('success', response)
+                        self.formSaving = false
                     })
+                    .catch(function (response, status, request) {
+                        var errors = JSON.parse(response.data)
+                        self.formErrors = errors
+                        self.formSaving = false
+                    });
             }
 
 //            fetchCategories () {
