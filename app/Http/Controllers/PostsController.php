@@ -47,28 +47,23 @@ class PostsController extends Controller
     }
 
     /**
-     * Show the form for creating a new post.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created post in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Picturesque\Http\Requests\PostRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        return $this->post->create([
+            'title'       => $request->get('title'),
+            'slug'        => $request->get('slug'),
+            'description' => $request->get('description'),
+            'text'        => $request->get('text')
+        ]);
     }
 
     /**
-     * Display the specified post.
+     * Display the specified post by id.
      *
      * @param  int $id
      * @return \Illuminate\Http\Response
@@ -82,6 +77,25 @@ class PostsController extends Controller
             'description',
             'text')
             ->findOrFail($id);
+    }
+
+    /**
+     * Display the specified post by slug.
+     *
+     * @param $slug
+     * @return \Illuminate\Http\Response
+     * @internal param int $id
+     */
+    public function showBySlug($slug)
+    {
+        return $this->post->select(
+            'id',
+            'title',
+            'slug',
+            'description',
+            'text')
+            ->where('slug', $slug)
+            ->first();
     }
 
     /**
@@ -112,7 +126,7 @@ class PostsController extends Controller
         $post = $this->post->find($id);
         $post->title = $request->get('title');
         $post->slug = $request->get('slug');
-        $post->description = $request->get('title');
+        $post->description = $request->get('description');
         $post->text = $request->get('text');
         $post->save();
 

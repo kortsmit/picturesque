@@ -7,6 +7,13 @@ Route::get('/', function () {
 Route::group(['prefix' => 'api', 'middleware' => ['api']], function () {
     
     Route::resource('/posts', '\Picturesque\Http\Controllers\PostsController');
+    Route::get(
+        '/posts/slug/{slug}',
+        array(
+            'as'   => 'post.show.slug',
+            'uses' => '\Picturesque\Http\Controllers\PostsController@showBySlug'
+        )
+    );
 
     Route::resource('/categories', '\Picturesque\Http\Controllers\CategoriesController');
 

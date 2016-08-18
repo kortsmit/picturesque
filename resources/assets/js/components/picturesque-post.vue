@@ -1,7 +1,15 @@
 <template>
     <section class="content">
-        <h1>{{ $route.params.slug }}</h1>
-        test
+        <h1>{{ post.title }}</h1>
+
+        <p class="lead">
+            {{ post.description }}
+        </p>
+
+        <p>
+            {{ post.text }}
+        </p>
+
     </section>
 </template>
 
@@ -13,9 +21,42 @@
     export default {
         name: 'post',
 
-        components: {
+        props: {
+            loading: true,
+        },
+
+        data() {
+            return {
+                postSlug: 0,
+                post: {
+                    categories: [],
+                    title: '',
+                    slug: '',
+                    description: '',
+                    text: ''
+                }
+            }
+        },
+
+        ready () {
+            this.postSlug = this.$route.params.slug
+
+            this.fetchPost()
+        },
+
+        methods: {
+
+            fetchPost () {
+                let self = this
+                self.$http.get('api/posts/slug/' + this.postSlug)
+                    .then(function (response) {
+                        self.post = JSON.parse(response.data)
+                    })
+            },
 
         },
+
         replace: false
     }
 </script>
+
