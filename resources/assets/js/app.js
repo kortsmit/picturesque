@@ -12,29 +12,33 @@ var router = new VueRouter()
 
 router.map({
     '/': {
+        name: 'home',
         component: require('./components/picturesque-home.vue')
     },
     '/blog': {
+        name: 'blog',
         component: require('./components/picturesque-blog.vue')
     },
     '/blog/:slug': {
-        name: 'post.show',
-        component: {
-            template: 'Post slug is {{ $route.params.slug }}'
-        }
+        name: 'post',
+        component: require('./components/picturesque-post.vue')
     },
     '/about': {
+        name: 'about',
         component: require('./components/picturesque-about.vue')
     },
     '/contact': {
+        name: 'contact',
         component: require('./components/picturesque-contact.vue')
     },
 
     '/admin': {
+        name: 'admin',
         component: require('./components/picturesque-admin.vue')
     },
 
     '/admin/posts': {
+        name: 'admin.posts',
         component: require('./components/admin/picturesque-posts.vue')
     },
     '/admin/posts/create': {
@@ -47,6 +51,7 @@ router.map({
     },
 
     '/admin/categories': {
+        name: 'admin.categories',
         component: require('./components/admin/picturesque-categories.vue')
     },
     '/admin/categories/create': {
@@ -59,6 +64,7 @@ router.map({
     },
 
     '/admin/photos': {
+        name: 'admin.photos',
         component: require('./components/admin/picturesque-photos.vue')
     },
     '/admin/photos/create': {
@@ -71,6 +77,7 @@ router.map({
     },
 
     '/admin/users': {
+        name: 'admin.users',
         component: require('./components/admin/picturesque-users.vue')
     },
     '/admin/users/create': {

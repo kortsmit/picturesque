@@ -7,7 +7,7 @@
                 <p class="card-text">{{ post.description }}</p>
                 <a href="#"
                    class="btn btn-sm btn-secondary">Like</a>
-                <a v-link="{ name: 'post.show', params: { slug: post.slug }}"
+                <a v-link="{ name: 'post', params: { slug: post.slug }}"
                    class="btn btn-sm btn-secondary">
                     View
                 </a>
