@@ -104,6 +104,7 @@
             return {
                 postId: 0,
                 post: {
+                    id: 0,
                     categories: [],
                     title: '',
                     slug: '',
@@ -124,8 +125,10 @@
 
         ready () {
             //this.fetchCategories()
-            this.postId = this.$route.params.id
-            this.fetchPost()
+            if ( this.$route.name !== 'admin.posts.create' ) {
+                this.postId = this.$route.params.id
+                this.fetchPost()
+            }
         },
 
         methods: {
@@ -141,6 +144,33 @@
             savePost () {
                 let self = this
                 self.formSaving = true
+
+                if ( self.postId == 0 ) {
+                    self.createNewPost()
+                } else {
+                    self.editPost()
+                }
+
+            },
+
+            createNewPost () {
+                let self = this
+                self.$http.post('api/posts', self.post)
+                    .then(function (response) {
+                        console.log('success', response)
+                        self.postId = JSON.parse(response.data).id
+                        self.post.id = self.postId
+                        self.formSaving = false
+                    })
+                    .catch(function (response, status, request) {
+                        var errors = JSON.parse(response.data)
+                        self.formErrors = errors
+                        self.formSaving = false
+                    })
+            },
+
+            editPost () {
+                let self = this
                 self.$http.patch('api/posts/' + this.postId, self.post)
                     .then(function (response) {
                         console.log('success', response)
@@ -150,7 +180,7 @@
                         var errors = JSON.parse(response.data)
                         self.formErrors = errors
                         self.formSaving = false
-                    });
+                    })
             }
 
 //            fetchCategories () {

@@ -2,11 +2,8 @@
 
 namespace Picturesque\Http\Controllers;
 
-use Picturesque\Http\Requests\PostRequest;
 use Picturesque\Post;
-use Illuminate\Http\Request;
-
-use Picturesque\Http\Requests;
+use Picturesque\Http\Requests\PostRequest;
 
 class PostsController extends Controller
 {
@@ -56,6 +53,8 @@ class PostsController extends Controller
     {
         return $this->post->create([
             'title'       => $request->get('title'),
+            'user_id'     => 1,
+            'category_id' => 1,
             'slug'        => $request->get('slug'),
             'description' => $request->get('description'),
             'text'        => $request->get('text')
