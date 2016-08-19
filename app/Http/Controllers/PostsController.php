@@ -28,7 +28,7 @@ class PostsController extends Controller
     }
 
     /**
-     * Display a listing of the posts.
+     * Display a listing of the published posts.
      *
      * @return \Illuminate\Http\Response
      */
@@ -40,6 +40,40 @@ class PostsController extends Controller
             'slug',
             'description')
             ->orderBy('updated_at', 'desc')
+            ->published()
+            ->paginate(10);
+    }
+
+    /**
+     * Display a listing of all the posts.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function all()
+    {
+        return $this->post->select(
+            'id',
+            'title',
+            'slug',
+            'description')
+            ->orderBy('updated_at', 'desc')
+            ->paginate(10);
+    }
+
+    /**
+     * Display a listing of the draft posts.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function drafts()
+    {
+        return $this->post->select(
+            'id',
+            'title',
+            'slug',
+            'description')
+            ->orderBy('updated_at', 'desc')
+            ->drafts()
             ->paginate(10);
     }
 
@@ -74,7 +108,8 @@ class PostsController extends Controller
             'title',
             'slug',
             'description',
-            'text')
+            'text',
+            'published')
             ->findOrFail($id);
     }
 
@@ -94,6 +129,7 @@ class PostsController extends Controller
             'description',
             'text')
             ->where('slug', $slug)
+            ->published()
             ->first();
     }
 
@@ -127,6 +163,7 @@ class PostsController extends Controller
         $post->slug = $request->get('slug');
         $post->description = $request->get('description');
         $post->text = $request->get('text');
+        $post->published = $request->get('published');
         $post->save();
 
         return $post;
