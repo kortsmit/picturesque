@@ -4,7 +4,6 @@ namespace Picturesque\Http\Controllers;
 
 use Picturesque\Category;
 use Illuminate\Http\Request;
-
 use Picturesque\Http\Requests;
 
 class CategoriesController extends Controller
@@ -37,7 +36,8 @@ class CategoriesController extends Controller
     {
         return $this->category->select(
             'id',
-            'name')
+            'name',
+            'slug')
             ->orderBy('updated_at')
             ->paginate(10);
     }
@@ -47,9 +47,9 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(CategoryRequest $request)
     {
-        //
+
     }
 
     /**
@@ -58,7 +58,7 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         //
     }
@@ -88,11 +88,10 @@ class CategoriesController extends Controller
     /**
      * Update the specified category in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
         //
     }

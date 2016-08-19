@@ -12,6 +12,7 @@
                         <tr>
                             <th width="1%">#</th>
                             <th>Title</th>
+                            <th>Slug</th>
                             <th width="1%"></th>
                             <th width="1%">
                                 <a href="#"
@@ -25,6 +26,7 @@
                         <tr v-for="category in categories" :class="{ 'removed' : category.removed }">
                             <td>{{ category.id }}</td>
                             <td>{{ category.name }}</td>
+                            <td>{{ category.slug }}</td>
                             <td>
                                 <a href="#"
                                    v-link="{ name: 'admin.categories.edit', params: { id: category.id }}"
