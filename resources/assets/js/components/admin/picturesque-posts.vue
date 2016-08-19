@@ -86,7 +86,7 @@
             fetchPosts () {
                 let self = this
                 self.loading = true
-                self.$http.get('api/posts?page='+ self.pagination.current_page)
+                self.$http.get('api/posts/all?page='+ self.pagination.current_page)
                     .then(function (response) {
                         self.posts = JSON.parse(response.data).data
                         self.makePagination(JSON.parse(response.data))

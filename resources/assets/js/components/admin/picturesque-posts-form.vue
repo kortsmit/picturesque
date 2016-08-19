@@ -66,16 +66,30 @@
                         </small>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group pull-xs-left">
                         <button type="button"
                                 v-link="{ path: '/admin/posts' }"
                                 class="btn btn-secondary">Back</button>
+                    </div>
+                    <div class="form-group pull-xs-right">
                         <button type="button"
                                 @click="savePost"
                                 :disabled="formSaving"
                                 class="btn btn-primary">Save</button>
-                        <button type="button"
-                                class="btn btn-success">Publish</button>
+                        <div class="btn-group" role="group">
+                            <button type="button"
+                                    @click="togglePublished(0)"
+                                    :disabled="post.published == 0"
+                                    :disabled="formSaving"
+                                    :class="{ 'btn-success' : post.published == 0 }"
+                                    class="btn btn-secondary">Draft</button>
+                            <button type="button"
+                                    @click="togglePublished(1)"
+                                    :disabled="post.published == 1"
+                                    :disabled="formSaving"
+                                    :class="{ 'btn-success' : post.published == 1 }"
+                                    class="btn btn-secondary">Publish</button>
+                        </div>
                     </div>
 
                 </form>
@@ -102,9 +116,9 @@
 
         data() {
             return {
-                postId: 0,
                 post: {
                     id: 0,
+                    published: 0,
                     categories: [],
                     title: '',
                     slug: '',
@@ -126,7 +140,7 @@
         ready () {
             //this.fetchCategories()
             if ( this.$route.name !== 'admin.posts.create' ) {
-                this.postId = this.$route.params.id
+                this.post.id = this.$route.params.id
                 this.fetchPost()
             }
         },
@@ -135,7 +149,7 @@
 
             fetchPost () {
                 let self = this
-                self.$http.get('api/posts/' + this.postId)
+                self.$http.get('api/posts/' + this.post.id)
                     .then(function (response) {
                         self.post = JSON.parse(response.data)
                     })
@@ -145,7 +159,7 @@
                 let self = this
                 self.formSaving = true
 
-                if ( self.postId == 0 ) {
+                if ( self.post.id == 0 ) {
                     self.createNewPost()
                 } else {
                     self.editPost()
@@ -158,8 +172,7 @@
                 self.$http.post('api/posts', self.post)
                     .then(function (response) {
                         console.log('success', response)
-                        self.postId = JSON.parse(response.data).id
-                        self.post.id = self.postId
+                        self.post.id = JSON.parse(response.data).id
                         self.formSaving = false
                     })
                     .catch(function (response, status, request) {
@@ -171,7 +184,7 @@
 
             editPost () {
                 let self = this
-                self.$http.patch('api/posts/' + this.postId, self.post)
+                self.$http.patch('api/posts/' + self.post.id, self.post)
                     .then(function (response) {
                         console.log('success', response)
                         self.formSaving = false
@@ -181,6 +194,13 @@
                         self.formErrors = errors
                         self.formSaving = false
                     })
+            },
+
+            togglePublished (published) {
+                let self = this
+                self.formSaving = true
+                self.post.published = published
+                self.savePost()
             }
 
 //            fetchCategories () {

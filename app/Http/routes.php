@@ -5,7 +5,14 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'api', 'middleware' => ['api']], function () {
-    
+
+    Route::get(
+        '/posts/all',
+        array(
+            'as'   => 'post.show.all',
+            'uses' => '\Picturesque\Http\Controllers\PostsController@all'
+        )
+    );
     Route::resource('/posts', '\Picturesque\Http\Controllers\PostsController');
     Route::get(
         '/posts/slug/{slug}',
