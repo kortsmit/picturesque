@@ -65,4 +65,26 @@ class Post extends Model
         return false;
     }
 
+    /**
+     * Query scope to select published posts.
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('published', 1);
+    }
+
+    /**
+     * Query scope to select posts in draft status.
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeDrafts($query)
+    {
+        return $query->where('published', 0);
+    }
+
 }
