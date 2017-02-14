@@ -1,94 +1,20 @@
-import Vue from 'vue'
-import PicturesqueApp from './picturesque-app.vue'
-import VueRouter from 'vue-router'
-import VueResource from 'vue-resource'
 
-Vue.use(VueRouter)
-Vue.use(VueResource)
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
 
-Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#csrf-token').getAttribute('value')
+require('./bootstrap');
 
-var router = new VueRouter()
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
 
-router.map({
-    '/': {
-        name: 'home',
-        component: require('./components/picturesque-home.vue')
-    },
-    '/blog': {
-        name: 'blog',
-        component: require('./components/picturesque-blog.vue')
-    },
-    '/blog/:slug': {
-        name: 'post',
-        component: require('./components/picturesque-post.vue')
-    },
-    '/about': {
-        name: 'about',
-        component: require('./components/picturesque-about.vue')
-    },
-    '/contact': {
-        name: 'contact',
-        component: require('./components/picturesque-contact.vue')
-    },
+Vue.component('example', require('./components/Example.vue'));
 
-    '/admin': {
-        name: 'admin',
-        component: require('./components/picturesque-admin.vue')
-    },
-
-    '/admin/posts': {
-        name: 'admin.posts',
-        component: require('./components/admin/picturesque-posts.vue')
-    },
-    '/admin/posts/create': {
-        name: 'admin.posts.create',
-        component: require('./components/admin/picturesque-posts-form.vue')
-    },
-    '/admin/posts/:id/edit': {
-        name: 'admin.post.edit',
-        component: require('./components/admin/picturesque-posts-form.vue')
-    },
-
-    '/admin/categories': {
-        name: 'admin.categories',
-        component: require('./components/admin/picturesque-categories.vue')
-    },
-    '/admin/categories/create': {
-        name: 'admin.categories.create',
-        component: require('./components/admin/picturesque-categories-form.vue')
-    },
-    '/admin/categories/:id/edit': {
-        name: 'admin.categories.edit',
-        component: require('./components/admin/picturesque-categories-form.vue')
-    },
-
-    '/admin/photos': {
-        name: 'admin.photos',
-        component: require('./components/admin/picturesque-photos.vue')
-    },
-    '/admin/photos/create': {
-        name: 'admin.photos.create',
-        component: require('./components/admin/picturesque-photos-form.vue')
-    },
-    '/admin/photos/:id/edit': {
-        name: 'admin.photos.edit',
-        component: require('./components/admin/picturesque-photos-form.vue')
-    },
-
-    '/admin/users': {
-        name: 'admin.users',
-        component: require('./components/admin/picturesque-users.vue')
-    },
-    '/admin/users/create': {
-        name: 'admin.users.create',
-        component: require('./components/admin/picturesque-users-form.vue')
-    },
-    '/admin/users/:id/edit': {
-        name: 'admin.users.edit',
-        component: require('./components/admin/picturesque-users-form.vue')
-    },
-
-})
-
-router.start(PicturesqueApp, '#app')
+const app = new Vue({
+    el: '#app'
+});

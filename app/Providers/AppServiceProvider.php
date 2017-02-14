@@ -1,6 +1,6 @@
 <?php
 
-namespace Picturesque\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

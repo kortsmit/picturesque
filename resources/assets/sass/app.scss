@@ -1,24 +1,9 @@
-@import "../../../node_modules/bootstrap/scss/bootstrap";
 
-.container {
-  padding-top: 20px
-}
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
-.list-group-item {
-  &.v-link-active,
-  &.v-link-active:hover,
-  &.v-link-active:focus {
-    z-index: 2;
-    color: $list-group-active-color;
-    background-color: $list-group-active-bg;
-    border-color: $list-group-active-border;
-  }
-}
+// Variables
+@import "variables";
 
-.navbar-nav .nav-item a {
-  &.v-link-active,
-  &.v-link-active:hover,
-  &.v-link-active:focus {
-    color: rgba(0,0,0,.8);
-  }
-}
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";

@@ -11,31 +11,14 @@
 |
 */
 
-$factory->define(Picturesque\User::class, function (Faker\Generator $faker) {
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\User::class, function (Faker\Generator $faker) {
+    static $password;
+
     return [
         'name' => $faker->name,
-        'email' => $faker->safeEmail,
-        'password' => bcrypt(str_random(10)),
+        'email' => $faker->unique()->safeEmail,
+        'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
-    ];
-});
-
-$factory->define(Picturesque\Category::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->sentence(4),
-        'slug' => $faker->slug($faker->numberBetween(1, 2)),
-        'color' => $faker->hexColor,
-    ];
-});
-
-$factory->define(Picturesque\Post::class, function (Faker\Generator $faker) {
-    return [
-        'user_id' => 1,
-        'category_id' => 1,
-        'title' => $faker->sentence(10, true),
-        'slug' => $faker->slug,
-        'description' => $faker->realText($faker->numberBetween(100, 200)),
-        'text' => $faker->realText($faker->numberBetween(250, 500)),
-        'published' => 1,
     ];
 });
