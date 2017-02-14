@@ -1,9 +1,32 @@
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+//@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
 // Variables
-@import "variables";
+//@import "variables";
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+.container {
+  padding-top: 20px
+}
+
+.list-group-item {
+  &.router-link-active,
+  &.router-link-active:hover,
+  &.router-link-active:focus {
+	z-index: 2;
+	color: $list-group-active-color;
+	background-color: $list-group-active-bg;
+	border-color: $list-group-active-border;
+  }
+}
+
+.navbar-nav .nav-item li {
+  &.router-link-active,
+  &.router-link-active:hover,
+  &.router-link-active:focus {
+	color: rgba(0,0,0,.8);
+  }
+}
