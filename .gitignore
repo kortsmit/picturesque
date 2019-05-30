@@ -5,3 +5,7 @@ Homestead.yaml
 Homestead.json
 .env
 .idea
+npm-debug.log
+yarn-error.log
+public/mix-manifest.json
+public/js/app.js
